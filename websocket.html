@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>socket.html</title>
+    <meta name="content-type" content="text/html" charset="UTF-8">
+</head>
+<body>
+
+Welcome<br/>
+登录的uid：<input id="uid" type="text"/><br/>
+<button onclick="connectWebSocket()">connectWebSocket</button><br/>
+发送出去的信息：<input id="text" type="text"/><br/>
+发送送给谁的uid：<input id="sendToUid" type="text"/><br/>
+<button onclick="send()">Send</button><br/>
+收到的信息：<input id="getMessage" type="text"/><br/>
+<button onclick="closeWebSocket()">Close</button>
+<div id="message">
+</div>
+</body>
+<script type="text/javascript">
+    var websocket = null;
+    //强制关闭浏览器  调用websocket.close（）,进行正常关闭
+    window.onunload = function () {
+        //关闭连接
+        closeWebSocket();
+    }
+
+    //建立WebSocket连接
+    function connectWebSocket() {
+        var userID = document.getElementById("uid");
+        console.log(userID);
+        console.log("开始...");
+
+        //建立webSocket连接
+        // websocket = new WebSocket("ws://localhost:8080/myHandler/uid=" + userID.value);
+        websocket = new WebSocket("wss://api.qiuchengwangluo.com/union-front/myHandler/uid=" + userID.value);
+
+        //打开webSokcet连接时，回调该函数
+        websocket.onopen = function () {
+            console.log("onpen");
+        }
+
+        //关闭webSocket连接时，回调该函数
+        websocket.onclose = function () {
+            //关闭连接
+            console.log("onclose");
+        }
+
+        //接收信息
+        websocket.onmessage = function (msg) {
+            var getMessage = document.getElementById("getMessage");
+            getMessage.value = msg.data;
+            console.log(msg.data);
+        }
+    }
+
+    //发送消息
+    function send() {
+        var sendToUid = document.getElementById("sendToUid");
+        var messageText = document.getElementById("text");
+        var postValue = {};
+        postValue.id = sendToUid.value;
+        postValue.message = messageText.value;
+        websocket.send(JSON.stringify(postValue));
+    }
+
+    //关闭连接
+    function closeWebSocket() {
+        if (websocket != null) {
+            websocket.close();
+        }
+    }
+
+</script>
+</html>
