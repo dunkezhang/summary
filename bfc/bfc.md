@@ -1,6 +1,7 @@
 ## 什么是BFC
 
  BFC 是一块独立的渲染区域，只有它内部的`块级盒子`参与它的布局。这些块级盒子的布局方式不会受BFC外部布局的影响，同时它们也不会影响BFC外部的布局。
+ 
 ## BFC产生
 
 以下任意一种情况都能在其内部产生BFC：
@@ -31,7 +32,6 @@
 
 
 ## 参考资料
-
-* https://www.w3.org/TR/CSS21/visuren.html#block-formatting
 * [CSS基础——块级元素、块级盒子以及BFC](https://juejin.im/post/5a7d22636fb9a0633c660359)
 * [MDN——块格式化上下文](https://developer.mozilla.org/zh-CN/docs/Web/Guide/CSS/Block_formatting_context)
+* [布局概念 - 关于CSS-BFC深入理解](https://juejin.im/post/5909db2fda2f60005d2093db)
