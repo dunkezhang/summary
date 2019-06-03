@@ -14,19 +14,59 @@
 6. 网格元素（display为 grid 或 inline-grid 元素的直接子元素）
 7. 内联块元素，即display的值为inline-block的元素；
 8. 流式布局根元素，display值为flow-root的元素；
+9. 表格单元格（元素的 display为 table-cell，HTML表格单元格默认为该值）
 
 
 
-## BFC规则
+## BFC布局规则
 
-1. BFC内部的块级盒子会在垂直方向一个接一个的堆放，并且相邻的块级盒子的外边距(Margin)会折叠，以最大的一个外边距作为两个盒子之间的距离；
-2. 计算BFC的高度时，它内部的浮动元素也会被计算进去；
+1. 内部的box会在垂直方向一个接一个的放置；
+2. Box垂直方向的距离由margin决定。属于同一个BFC的两个相邻Box的margin会发生重叠
+3. 计算BFC的高度时，它内部的浮动元素也会被计算进去(可应用清除内部浮动)；
+4. BFC的区域不会与float box重叠（自适应两栏布局）
+5. BFC就是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外部元素。反之也如此。
 
 
 ## BFC应用场景
 
 1. 自适应两栏布局
+
+	```
+	<style>
+    body {
+        width: 300px;
+        position: relative;
+    }
+ 
+    .aside {
+        width: 100px;
+        height: 150px;
+        float: left;
+        background: #f66;
+    }
+ 
+    .main {
+        height: 200px;
+        background: #fcc;
+    }
+	</style>
+	<body>
+	    <div class="aside"></div>
+	    <div class="main"></div>
+	</body>
+	```
+	
+
+	
+	![两列](https://s2.ax1x.com/2019/06/03/VYJ8zj.png)
+	
+	![两列自适应](https://s2.ax1x.com/2019/06/03/VYJ3WQ.png)
 2. 清除内部浮动
+
+	![图片](https://s2.ax1x.com/2019/06/03/VYJYyn.png)
+	
+	![浮动](https://s2.ax1x.com/2019/06/03/VYJJQs.png)
+	
 3. 防止垂直 margin 重叠
 
 
