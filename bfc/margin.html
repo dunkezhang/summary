@@ -5,13 +5,90 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+  <style>
+    #container {
+      overflow: auto;
+      border: 1px solid #000;
+      width: 100px;
+    }
+    #container > div {
+      width: 50px;
+      height: 50px;
+      margin: 20px;
+    }
+    div#red {
+      background-color: red;
+    }
+    div#yellow {
+      background-color: yellow;
+    }
+    div#orange {
+      background-color: orange;
+    }
+
+    #container1 {
+      overflow: auto;
+      border: 1px solid #000;
+      width: 100px;
+      margin-top: 30px;
+    }
+    #container1 > div {
+      overflow: auto;
+    }
+    #container1 > div > div {
+      width: 50px;
+      height: 50px;
+      margin: 20px;
+    }
+    div#red {
+      background-color: red;
+    }
+    div#yellow {
+      background-color: yellow;
+    }
+    div#orange {
+      background-color: orange;
+    }
+
+    #containter2 {
+      width: 300px;
+      position: relative;
+    }
+    .aside {
+      width: 100px;
+      height: 150px;
+      float: left;
+      background: #f66;
+    }
+ 
+    .main {
+      height: 200px;
+      background: #fcc;
+    }
+  </style>
 </head>
 <body>
-  <div>
-    兄弟A
+  <div id="container">
+    <div id='red'></div>
+    <div id="yellow"></div>
+    <div id="orange"></div>
   </div>
-  <div>
-    兄弟 B
+
+  <div id="container1">
+    <div>
+      <div id='red'></div>
+    </div>
+    <div>
+      <div id="yellow"></div>
+    </div>
+    <div>
+      <div id="orange"></div>
+    </div>
+  </div>
+
+  <div id="containter2">
+    <div class="aside"></div>
+    <div class="main">fwefwe</div>
   </div>
 </body>
 </html>
