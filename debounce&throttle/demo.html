@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+
+    //防抖
+    function denounce(func,delay) {
+      let timerId = null
+      return function(){
+        window.clearTimeout(timerId)
+        let context = this
+        let args = arguments
+        timerId = setTimeout(()=>{
+          func.call(context,args)
+        },time)
+      }
+    }
+    function throttle(func, time) {
+      let preTime = 0
+      return function() {
+        let currentTime = Date.now()
+        let context = this
+        let args = arguments
+        if(currentTime-preTime>time){
+          func.call(context,args)
+          preTime = Date.now()
+        }
+      }
+    }
+    //节流
+    function scroll() {
+      console.log('scroll')
+    }
+    window.addEventListener('scroll',throttle(scroll,2000))
+  </script>
+</head>
+<body>
+  <div id="content" style="height: 750px;line-height: 50px;text-align:center;color:#fff;background-color:#ccc;font-size:80px"></div>
+</body>
+</html>
