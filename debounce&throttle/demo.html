@@ -23,6 +23,10 @@
       let preTime = 0
       return function() {
         let currentTime = Date.now()
+        console.log('preTime', preTime);
+        console.log('currentTime', currentTime);
+        console.log('减去的值', currentTime - preTime);
+        console.log('time', time);
         let context = this
         let args = arguments
         if(currentTime-preTime>time){
