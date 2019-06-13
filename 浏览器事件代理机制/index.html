@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- <ul id="color-list">
+    <li>red</li>
+    <li>yellow</li>
+    <li>blue</li>
+    <li>green</li>
+    <li>black</li>
+    <li>white</li>
+  </ul> -->
+
+  <ul id="color-list-agency">
+    <li>red</li>
+    <li>yellow</li>
+    <li>blue</li>
+    <li>green</li>
+    <li>black</li>
+    <li>white</li>
+    <span>test</span>
+  </ul>
+
+</body>
+<script>
+  (function(){
+    var color_list = document.getElementById('color-list');
+    var colors = color_list.getElementsByTagName('li')
+    console.log(colors)
+    for(var i=0;i<colors.length;i++){
+      console.log(colors[i])
+      colors[i].addEventListener('click',showColor,false)
+    }
+    function showColor(e){
+      var x = e.target;
+      console.log('x',x)
+      console.log('the color is'+ x.innerHTML)
+    }
+  })()
+
+  (function(){
+    var color_list = document.getElementById('color-list-agency');
+    color_list.addEventListener('click',showColor,false)
+    function showColor(e){
+      var x = e.target;
+      // console.log('x',x)
+      // console.log('x.nodeName.toLowerCase()',x.nodeName.toLowerCase())
+      if(x.nodeName.toLowerCase() === 'li'){
+        console.log('the color is'+ x.innerHTML)
+      }
+    }
+  })()
+  </script>
+</html>
