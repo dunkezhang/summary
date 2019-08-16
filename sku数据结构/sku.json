@@ -2,38 +2,36 @@
   "data":{
       "sku":{
           "cover":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350458440089600.jpg",
+          "hasSku":true,
+          "stock":559,
           "sku2info":{
               "0":{
                   "price":{
                       "priceMoney":"110.00",
-                      "marketingPrice":null
+                      "marketingPrice":"110.00"
                   },
-                  "quantity":"559",
-                  "integral":0
+                  "quantity":"559"
               },
               "381":{
                   "price":{
                       "priceMoney":"110.00",
                       "marketingPrice":"110.00"
                   },
-                  "quantity":"212",
-                  "integral":null
+                  "quantity":"212"
               },
               "382":{
                   "price":{
                       "priceMoney":"110.00",
                       "marketingPrice":"110.00"
                   },
-                  "quantity":"120",
-                  "integral":null
+                  "quantity":"120"
               },
               "383":{
                   "price":{
                       "priceMoney":"120.00",
                       "marketingPrice":"120.00"
                   },
-                  "quantity":"227",
-                  "integral":null
+                  "quantity":"227"
               },
               "390":{
                   "price":{
@@ -48,16 +46,14 @@
                       "priceMoney":"0.00",
                       "marketingPrice":"0.00"
                   },
-                  "quantity":"0",
-                  "integral":null
+                  "quantity":"0"
               },
               "392":{
                   "price":{
                       "priceMoney":"0.00",
                       "marketingPrice":"0.00"
                   },
-                  "quantity":"0",
-                  "integral":null
+                  "quantity":"0"
               }
           },
           "skuBase":{
@@ -65,38 +61,32 @@
                   {
                       "skuId":"381",
                       "propPath":"1565948218339:1565948218341;1565948218340:1565948218342",
-                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350798744944640.jpg",
-                      "map":null
+                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350798744944640.jpg"
                   },
                   {
                       "skuId":"382",
                       "propPath":"1565948218339:1565948218341;1565948218340:1565948218343",
-                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350809645940736.jpg",
-                      "map":null
+                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350809645940736.jpg"
                   },
                   {
                       "skuId":"383",
                       "propPath":"1565948218339:1565948218341;1565948218340:1565948218344",
-                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350823139016704.jpg",
-                      "map":null
-                  },
+                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350823139016704.jpg"
+                  },   
                   {
                       "skuId":"390",
                       "propPath":"1565948218339:1565948218345;1565948218340:1565948218342",
-                      "img":"",
-                      "map":null
+                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350823139016704.jpg"
                   },
                   {
                       "skuId":"391",
                       "propPath":"1565948218339:1565948218345;1565948218340:1565948218343",
-                      "img":"",
-                      "map":null
+                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350823139016704.jpg"
                   },
                   {
                       "skuId":"392",
                       "propPath":"1565948218339:1565948218345;1565948218340:1565948218344",
-                      "img":"",
-                      "map":null
+                      "img":"https://imehome.oss-cn-hangzhou.aliyuncs.com/products/2019/8/2/1159350823139016704.jpg"
                   }
               ],
               "props":[
@@ -138,9 +128,7 @@
                       ]
                   }
               ]
-          },
-          "hasSku":true,
-          "stock":559
+          }
       }
   },
   "message":"操作成功",
