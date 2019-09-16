@@ -7,17 +7,13 @@
 
 以下任意一种情况都能在其内部产生BFC：
 
-1. 根元素或其他包含它的元素（注：我不是很理解这句话是什么意思）
+1. 根元素（<html>）
 2. postion 为absolute 和fixed的元素
 3. float不为none的元素
 4. overflow不为visible的元素
-5. 弹性元素（display为 flex 或 inline-flex元素的直接子元素）
+5. 内联块元素，即display的值为inline-block的元素；
 6. 网格元素（display为 grid 或 inline-grid 元素的直接子元素）
-7. 内联块元素，即display的值为inline-block的元素；
-8. 流式布局根元素，display值为flow-root的元素；
-9. 表格单元格（元素的 display为 table-cell，HTML表格单元格默认为该值）
-
-
+7. 弹性元素（display为 flex 或 inline-flex元素的直接子元素）
 
 ## BFC布局规则
 
