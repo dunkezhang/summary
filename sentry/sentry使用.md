@@ -6,7 +6,7 @@ JS没有如后端一样完善的日志系统，因此线上的各种bug都难以
 
 1. sentry 部署
 
-   因为公司内部已经搭建好了一套sentry服务，所以只需要工程里面引用项目DSN即可。
+   因为公司内部已经搭建好了一套sentry服务，并且创建好项目生成了一个DSN。所以只需要工程里面引用项目DSN即可。DSN就相当于连接到你sentry server的url，每个项目都单独对应一个DSN。
 
    ```javascript
    Sentry.init({
