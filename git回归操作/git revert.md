@@ -6,7 +6,7 @@ Git 的 revert命令可以用来撤销提交（commit），对于常规的提交
 
 ### 但是当你需要撤销一个合并（merge）的时候，事情就变得稍微复杂了一些。
 
-比如我需要撤销一个合并(merge)的时候，事情就变得复杂一些:![image-20200330155340219](/Users/zhangdunke/Library/Application Support/typora-user-images/image-20200330155340219.png)
+比如我需要撤销一个合并(merge)的时候，事情就变得复杂一些:![image-20200330155340219](./image-20200330155340219.png)
 
 
 
