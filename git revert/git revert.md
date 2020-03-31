@@ -39,3 +39,11 @@ fatal: revert failed
 
 一般来说，我在[develop]分支merge[test]，那么 parent 1就是develop，patent 2 就是test
 
+所以我输入了：
+
+```
+git revert dd2683caa291adf359fba6054a1c28e39f5b32a4 -m 1
+```
+
+就相当于我选了parent1 进行diff.因为parant1合并了一些内容，所以这次就撤销了这次合并。
+
