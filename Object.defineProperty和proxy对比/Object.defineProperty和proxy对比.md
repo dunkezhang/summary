@@ -42,10 +42,10 @@ arr[1] = 'change'
 
 可以看到，通过下标获取某个元素会触发getter方法，设置某个值会触发setter方法
 
-![image-20200506172804505](/Users/zhangdunke/Library/Application Support/typora-user-images/image-20200506172804505.png)
+![image-20200506172804505](./img//image-20200506172804505.png)
 
 但是，如果下标超过当前数组长度值时，不会触发getter方法和setter方法
-![image-20200506173736329](/Users/zhangdunke/Library/Application Support/typora-user-images/image-20200506173736329.png)
+![image-20200506173736329](./img/image-20200506173736329.png)
 
 所以我认为`Object.defineProperty` 本身是可以监控到数组下标的变化的（下标在数组长度范围内），只是在 Vue 的实现中，从性能/体验的性价比考虑，放弃了这个特性。在下标超出数组长度范围内的时候，无法检测到变化，其实这个就和对象的表现是一致了，数组的索引可以看做是对象的key，下面就讲分析对象的表现。
 
