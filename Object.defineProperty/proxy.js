@@ -1,5 +1,5 @@
-function observe(){
-return new Proxy({}, {
+function observe(data){
+return new Proxy(data, {
     get: function (target, propKey, receiver) {
       console.log(`getting ${propKey}!`);
       return Reflect.get(target, propKey, receiver);
@@ -11,8 +11,9 @@ return new Proxy({}, {
   });
 }
 let arr = [1,2,3]
-arr = observe()
-arr[1]
-arr[1] = 'change'
-arr.push(4)
-console.log(arr)
+let p = observe(arr)
+// p[0]
+p[1] = 'change'
+// p.push(4)
+// console.log(p)
+// console.log(p[5])

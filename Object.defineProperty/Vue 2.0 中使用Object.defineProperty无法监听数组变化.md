@@ -84,8 +84,8 @@ proxy可以直接监听对象而非属性
 用proxy改写observe方法
 
 ```javascript
-function observe(){
-return new Proxy({}, {
+function observe(data){
+return new Proxy(data, {
     get: function (target, propKey, receiver) {
       console.log(`getting ${propKey}!`);
       return Reflect.get(target, propKey, receiver);
@@ -100,25 +100,34 @@ return new Proxy({}, {
 
 数组监控
 
+```javascript
+let arr = [1,2,3]
+let p = observe(arr)
+p[0] //getting 0!
+p[0] = 'change' //setting 0!
+p[5] //getting 5!
+p[5] = 'change'//setting 6!
 ```
 
-```
-
-
+数组下标在长度内和长度外都能触发监控
 
 对象监控
 
+```javascript
+let obj = {a:1}
+let p = observe(arr)
+p.a
+p.a = 'change'
+p.b
+p.b = 'change'
+```
+
+已有属性和新增属性都能触发监控
+
 ## 总结
 
-1. data为数组的情况
-
-   a.  改变数组长度
-
-   b.通过数组下标进行赋值
-
-2. data为对象的情况
-
-   a. 无法监听新增的对象属性
+1. Object.defineProperty是对属性监控而proxy是对对象监控
+2. 用了proxy就不用循环对象的属性，性能提高
 
 
 
