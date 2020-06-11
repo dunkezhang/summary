@@ -5,6 +5,8 @@ vue3.0中，响应式数据部分弃用了 `Object.defineProperty`，使用 `Pro
 
 ## 无法监控数组下标的变化？
 
+结论：通过下标获取某个元素或者设置某个值会触发setter方法，但是下表超过当前长度则不会触发
+
 在一些技术博客上看到过这样一些说法，认为`Object.defineProperty`有一个缺陷是无法监听数组变化，我一直感觉到很疑惑，所以今天自己写代码尝试了一下：
 
 首先自己定义了一个observe函数来监控data，里面的实现原理就是用的Object.defineProperty
@@ -42,12 +44,12 @@ arr[1] = 'change'
 
 可以看到，通过下标获取某个元素会触发getter方法，设置某个值会触发setter方法
 
-![image-20200506172804505](./img//image-20200506172804505.png)
+![image-20200611114150255](./img/image-20200611114150255.png)
 
 但是，如果下标超过当前数组长度值时，不会触发getter方法和setter方法
 ![image-20200506173736329](./img/image-20200506173736329.png)
 
-所以我认为`Object.defineProperty` 本身是可以监控到数组下标的变化的（下标在数组长度范围内），只是在 Vue 的实现中，从性能/体验的性价比考虑，放弃了这个特性。在下标超出数组长度范围内的时候，无法检测到变化，其实这个就和对象的表现是一致了，数组的索引可以看做是对象的key，下面就讲分析对象的表现。
+所以我认为`Object.defineProperty` 本身是可以监控到数组下标的变化的（下标在数组长度范围内），只是在 Vue 的实现中，从性能/体验的性价比考虑，放弃了这个特性。但是在下标超出数组长度范围内的时候，无法检测到变化，其实这个就和对象的表现是一致了，数组的索引可以看做是对象的key，下面就讲分析对象的表现。
 
 ## `Object.defineProperty`无法监控对象新增属性值
 
@@ -76,7 +78,6 @@ obj.b = 'change'
 ![WeChatd485f810e19b77b03394bc58e49da102](./img/WeChatfa4362f911e3128a0faf779d67644090.png)
 
 所以`Object.defineProperty`无法监控对象新增属性值，这也可以解释在数组长度外的下标进行赋值也不会无法触发setter和getter方法
-由此可见，`Object.defineProperty`是监听对象属性的。
 
 ## 为什么用proxy代替Object.defineProperty
 proxy可以直接监听对象而非属性
@@ -126,7 +127,7 @@ p.b = 'change'
 
 ## 总结
 
-1. Object.defineProperty是对属性监控而proxy是对对象监控
+1. Object.defineProperty是对属性监控而proxy是对对象监控(proxy可以监控新增属性的对象变化)
 2. 用了proxy就不用循环对象的属性，性能提高
 
 

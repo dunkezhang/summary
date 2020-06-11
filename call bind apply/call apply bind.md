@@ -8,7 +8,7 @@ bind也能改变函数题this的指向，但是与apply和call的最大区别是
 
 ## 实现call函数
 用解构实现
-```
+```javascript
 Function.prototype.caller = function (thisArg, ...args) {
 	let context;
 	 if(!thisArg) {
@@ -36,7 +36,7 @@ bar.caller('value','wo','12');
 ```
 
 ## 实现apply函数
-```
+```javascript
 Function.prototype.applyer = function(thisArg,args){
     let context;
     if(!thisArg) {
@@ -67,7 +67,7 @@ bar.applyer('value',['wo','12']);
 
 
 ## 实现bind函数
-```
+```javascript
 Function.prototype.binder = function(thisArg,...args){
     let that = this;
     return function() {
@@ -76,7 +76,7 @@ Function.prototype.binder = function(thisArg,...args){
 }
 ```
 
-```
+```javascript
 Function.prototype.binder = function(thisArg,...args){
     let that = this;
     return function() {
