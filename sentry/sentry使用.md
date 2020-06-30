@@ -217,12 +217,10 @@ keepalive=false
     }
    ```
    
-   
-
       npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照下面的顺序执行:
-   
+
    ```javascript
-npm run prebuild && npm run build && npm run postbuild
+   npm run prebuild && npm run build && npm run postbuild
    ```
    
    所以我们在post的钩子里面加入执行sentry-cli，并且echo -n  的作用是，异步,不阻塞后面的 命令,所以这里能保证打包时不阻塞打包流程
