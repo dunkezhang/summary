@@ -194,7 +194,11 @@ keepalive=false
    在package.json里面npm script加上
    
    ```javascript
-   "sentry-cli": "VERSION=$(sentry-cli releases propose-version) && sentry-cli releases files $VERSION upload-sourcemaps --url-prefix '域名/项目名/js/' './dist/js'"
+    {
+    "scripts":{
+       "sentry-cli": "VERSION=$(sentry-cli releases propose-version) && sentry-cli releases files $VERSION upload-sourcemaps --url-prefix '域名/项目名/js/' './dist/js'"
+      }
+    }
    
    ```
    
@@ -205,16 +209,22 @@ keepalive=false
 
    在package.json里面npm script加上
 
-      ```javascript
-   "postbuild:prod": "npm run sentry-cli; echo -n",
-      ```
+   ```javascript
+    {
+    "scripts":{
+       "postbuild:prod": "npm run sentry-cli; echo -n",
+      }
+    }
+   ```
    
-      npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照下面的顺序执行，
+   
 
-      ```javascript
-   npm run prebuild && npm run build && npm run postbuild
-      ```
-
+      npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照下面的顺序执行:
+   
+   ```javascript
+npm run prebuild && npm run build && npm run postbuild
+   ```
+   
    所以我们在post的钩子里面加入执行sentry-cli，并且echo -n  的作用是，异步,不阻塞后面的 命令,所以这里能保证打包时不阻塞打包流程
 
 
