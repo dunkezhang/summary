@@ -57,7 +57,7 @@ keepalive=false
 
    目前来说，前端项目基本都会压缩混淆代码，这样导致Sentry捕捉到的异常堆栈难以理解。为了定位到错误的精确位置，我们需要把source和map文件上传到sentry服务器，这一步可以通过webpack插件[Sentry Webpack Plugin](https://github.com/getsentry/sentry-webpack-plugin)上传。
 
-* 安装Sentry Webpack Plugin插件，配置文件如下
+ 安装Sentry Webpack Plugin插件，配置文件如下
 
   ```javascript
   const SentryCliPlugin = require('@sentry/webpack-plugin')
@@ -203,17 +203,21 @@ npm install @sentry/cli
 
 3. 异步执行，不阻塞打包流程
 
-   npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照瞎 main的顺序执行，
+   在package.json里面npm script加上
 
-```
-   npm run prebuild && npm run build && npm run postbuild
-```
+      ```
+      "postbuild:prod": "npm run sentry-cli; echo -n",
+      ```
+   
+      npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照下面的顺序执行，
+
+      ```
+         npm run prebuild && npm run build && npm run postbuild
+      ```
 
    所以我们在post的钩子里面加入执行sentry-cli，并且echo -n  的作用是，异步,不阻塞后面的 命令,所以这里能保证打包时不阻塞打包流程
 
-   ```
-   "postbuild:prod": "npm run sentry-cli; echo -n",
-   ```
+
 
 4.保证release一样
 
@@ -223,7 +227,7 @@ npm install @sentry/cli
 const gitSha = require('child_process').execSync('git rev-parse HEAD').toString().trim()
   ```
 
-使用webpack的DefinePlugin插件在编译的时候创建一个全局变量
+使用webpack的DefinePlugin插件，这个是在编译的时候创建一个全局变量
 
 ```
 new webpack.DefinePlugin({
@@ -231,7 +235,7 @@ new webpack.DefinePlugin({
 });
 ```
 
-在项目配置sentry的时候,release的VERSION就喝sentry-cli的VERSION对应一致了
+在项目配置sentry的时候,release的VERSION就和sentry-cli的VERSION对应一致了
 
 ```
   Sentry.init({
