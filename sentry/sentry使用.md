@@ -13,45 +13,45 @@ sentry 支持多种框架，我们的项目的框架是vue,所以在其中选择
 
 
 
-2. 项目工程里面引入sentry
+## 项目工程里面引入sentry
 
-   创建project完成后会自动跳转到如何配置vue项目页面。接下来就按照指引在vue代码里引入 `sentry`。可以通过 `cdn` 或者 `npm` 引入。我们采用 `npm` 引入。引入的时候需要给 `init` 函数传递一个 `dsn` 参数。这个参数唯一指定了我们刚才创建的项目，在创建项目的时候系统会自动生成。如果不传这个参数，`sentry` 不会发送错误
-   
-   ```javascript
-   import Vue from 'vue'
-   import * as Sentry from '@sentry/browser';
-   import { Vue as VueIntegration } from '@sentry/integrations';
-   
-   Sentry.init({
-      dsn: '自己项目的dsn',
-      integrations: [
-        new Integrations.Vue({Vue, attachProps: true}),
-      ],
-      environment: process.env.VUE_APP_MODE,
-      })
-   ```
-   
-   在项目根目录下增加.sentryclic文件，其中的token可以在左上角头像里的api keys里面获取
-   
-   ```
-   [defaults]
-   url = https://raven.clubfactory.com
-   org = sentry
-   project = sellercentral-pc
-   apiKey = "your token"
-   
-   [auth]
-   token = "your token"
-   
-   [http]
-   keepalive=false
-   
-   ```
+1. 创建project完成后会自动跳转到如何配置vue项目页面。接下来就按照指引在vue代码里引入 `sentry`。可以通过 `cdn` 或者 `npm` 引入。我们采用 `npm` 引入。引入的时候需要给 `init` 函数传递一个 `dsn` 参数。这个参数唯一指定了我们刚才创建的项目，在创建项目的时候系统会自动生成。如果不传这个参数，`sentry` 不会发送错误
+
+```javascript
+import Vue from 'vue'
+import * as Sentry from '@sentry/browser';
+import { Vue as VueIntegration } from '@sentry/integrations';
+
+Sentry.init({
+   dsn: '自己项目的dsn',
+   integrations: [
+     new Integrations.Vue({Vue, attachProps: true}),
+   ],
+   environment: process.env.VUE_APP_MODE,
+   })
+```
+
+2. 在项目根目录下增加.sentryclic文件，其中的token可以在左上角头像里的api keys里面获取
+
+```
+[defaults]
+url = https://raven.clubfactory.com
+org = sentry
+project = sellercentral-pc
+apiKey = "your token"
+
+[auth]
+token = "your token"
+
+[http]
+keepalive=false
+
+```
 
 
 ## sourceMap release version 上传
 现在的前端项目基本都会使用工具进行编译打包压缩等（webpack）。那么，这样的代码在发布后一旦报错返回的源码可能你就很难找到具体位置在哪里了。目前已知的有两种方式，webpack插件Sentry Webpack Plugin和sentry-cli的方式。
-### webpack配置
+### webpack配置上传源文件
 
 1. 上传source-map文件
 
@@ -193,7 +193,7 @@ sentry 支持多种框架，我们的项目的框架是vue,所以在其中选择
 
    在package.json里面npm script加上
    
-   ```
+   ```javascript
    "sentry-cli": "VERSION=$(sentry-cli releases propose-version) && sentry-cli releases files $VERSION upload-sourcemaps --url-prefix '域名/项目名/js/' './dist/js'"
    
    ```
@@ -205,13 +205,13 @@ sentry 支持多种框架，我们的项目的框架是vue,所以在其中选择
 
    在package.json里面npm script加上
 
-      ```
+      ```javascript
    "postbuild:prod": "npm run sentry-cli; echo -n",
       ```
    
       npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照下面的顺序执行，
 
-      ```
+      ```javascript
    npm run prebuild && npm run build && npm run postbuild
       ```
 
@@ -229,7 +229,7 @@ sentry 支持多种框架，我们的项目的框架是vue,所以在其中选择
    
    使用webpack的DefinePlugin插件，这个是在编译的时候创建一个全局变量
    
-   ```
+   ```javascript
    new webpack.DefinePlugin({
      VERSION: JSON.stringify(gitSha)
    });
@@ -253,7 +253,7 @@ sentry 支持多种框架，我们的项目的框架是vue,所以在其中选择
 
 5. nginx配置,让map文件线上不能访问
 
-   ```javascript
+   ```nginx
    location ~ \.map$ {
    	deny all;
    }
