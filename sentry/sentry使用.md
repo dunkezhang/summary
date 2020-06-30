@@ -15,38 +15,38 @@ sentry 支持多种框架，我们的项目的框架是vue,所以在其中选择
 
 2. 项目工程里面引入sentry
 
-创建project完成后会自动跳转到如何配置vue项目页面。接下来就按照指引在vue代码里引入 `sentry`。可以通过 `cdn` 或者 `npm` 引入。我们采用 `npm` 引入。引入的时候需要给 `init` 函数传递一个 `dsn` 参数。这个参数唯一指定了我们刚才创建的项目，在创建项目的时候系统会自动生成。如果不传这个参数，`sentry` 不会发送错误
-
- ```javascript
-import Vue from 'vue'
-import * as Sentry from '@sentry/browser';
-import { Vue as VueIntegration } from '@sentry/integrations';
-
-Sentry.init({
-   dsn: '自己项目的dsn',
-   integrations: [
-     new Integrations.Vue({Vue, attachProps: true}),
-   ],
-   environment: process.env.VUE_APP_MODE,
-   })
- ```
-
-在项目根目录下增加.sentryclic文件，其中的token可以在左上角头像里的api keys里面获取
-
-```
-[defaults]
-url = https://raven.clubfactory.com
-org = sentry
-project = sellercentral-pc
-apiKey = "your token"
-
-[auth]
-token = "your token"
-
-[http]
-keepalive=false
-
-```
+   创建project完成后会自动跳转到如何配置vue项目页面。接下来就按照指引在vue代码里引入 `sentry`。可以通过 `cdn` 或者 `npm` 引入。我们采用 `npm` 引入。引入的时候需要给 `init` 函数传递一个 `dsn` 参数。这个参数唯一指定了我们刚才创建的项目，在创建项目的时候系统会自动生成。如果不传这个参数，`sentry` 不会发送错误
+   
+   ```javascript
+   import Vue from 'vue'
+   import * as Sentry from '@sentry/browser';
+   import { Vue as VueIntegration } from '@sentry/integrations';
+   
+   Sentry.init({
+      dsn: '自己项目的dsn',
+      integrations: [
+        new Integrations.Vue({Vue, attachProps: true}),
+      ],
+      environment: process.env.VUE_APP_MODE,
+      })
+   ```
+   
+   在项目根目录下增加.sentryclic文件，其中的token可以在左上角头像里的api keys里面获取
+   
+   ```
+   [defaults]
+   url = https://raven.clubfactory.com
+   org = sentry
+   project = sellercentral-pc
+   apiKey = "your token"
+   
+   [auth]
+   token = "your token"
+   
+   [http]
+   keepalive=false
+   
+   ```
 
 
 ## sourceMap release version 上传
@@ -56,30 +56,28 @@ keepalive=false
 1. 上传source-map文件
 
    目前来说，前端项目基本都会压缩混淆代码，这样导致Sentry捕捉到的异常堆栈难以理解。为了定位到错误的精确位置，我们需要把source和map文件上传到sentry服务器，这一步可以通过webpack插件[Sentry Webpack Plugin](https://github.com/getsentry/sentry-webpack-plugin)上传。
-
- 安装Sentry Webpack Plugin插件，配置文件如下
-
-  ```javascript
-  const SentryCliPlugin = require('@sentry/webpack-plugin')
-  module.exports = {
-    plugins:[
-      new SentryCliPlugin({
-        include: './dist',
-        ignoreFile: '.sentrycliignore',
-        ignore: ['node_modules', 'webpack.config.js'],
-        configFile: '.sentryclirc',
-        urlPrefix: 'http:' + process.env.VUE_APP_CDN_URL, // 静态文件地址
-        release: 'release@1.0.0' //release版本号
-      }),
-    ]
-  }
-  ```
-
-  
-
-  配置好后sentry后台错误信息展示效果
-
-  ![sentry图片](https://s2.ax1x.com/2019/12/05/Q8kt8U.png)
+   
+    安装Sentry Webpack Plugin插件，配置文件如下
+   
+   ```javascript
+     const SentryCliPlugin = require('@sentry/webpack-plugin')
+     module.exports = {
+       plugins:[
+         new SentryCliPlugin({
+           include: './dist',
+           ignoreFile: '.sentrycliignore',
+           ignore: ['node_modules', 'webpack.config.js'],
+           configFile: '.sentryclirc',
+           urlPrefix: 'http:' + process.env.VUE_APP_CDN_URL, // 静态文件地址
+           release: 'release@1.0.0' //release版本号
+         }),
+       ]
+     }
+   ```
+   
+     配置好后sentry后台错误信息展示效果
+   
+   ![sentry图片](https://s2.ax1x.com/2019/12/05/Q8kt8U.png)
 
 2. 配置项目的release版本号
 
@@ -120,8 +118,8 @@ keepalive=false
        })
    ```
    
-
    Sentry发布的版本如下图所示：
+   
    ![版本](https://s2.ax1x.com/2019/12/05/Q88fsI.png)
 
 
@@ -145,60 +143,62 @@ keepalive=false
 
 4. 区分环境引入文件
 
-因为我们监控的是线上的错误，所以只要在生产环境下生效即可
-
-```javascript
-const SentryCliPlugin = require('@sentry/webpack-plugin')
-const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-module.exports = {
-configureWebpack: config => {
-	const plugins = []
-	// 区分环境引用plugin，只有线上才使用sentry服务器和删除map文件
-    if (process.env.VUE_APP_MODE === 'production') {
-      plugins.push(
-        new SentryCliPlugin({
-          include: './dist',
-          ignoreFile: '.sentrycliignore',
-          ignore: ['node_modules', 'webpack.config.js'],
-          configFile: '.sentryclirc',
-          urlPrefix: 'http:' + process.env.VUE_APP_CDN_URL, // 静态文件地址
-          release: process.env.VUE_APP_MODE + VERSION // release版本号
-        }),
-        new CleanWebpackPlugin({
-          protectWebpackAssets: false,
-          cleanAfterEveryBuildPatterns: ['**/js/*.map']
-        })
-      )
-    }
-   config.plugins = [
-      ...config.plugins,
-      ...plugins
-    ]
-}
-}
-```
-
-这种方式有个弊端是项目打包时如果sentry服务出现问题，就会导致打包失败，阻塞打包流程。
+   因为我们监控的是线上的错误，所以只要在生产环境下生效即可
+   
+   ```javascript
+     const SentryCliPlugin = require('@sentry/webpack-plugin')
+     const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+     module.exports = {
+     configureWebpack: config => {
+       const plugins = []
+       // 区分环境引用plugin，只有线上才使用sentry服务器和删除map文件
+         if (process.env.VUE_APP_MODE === 'production') {
+           plugins.push(
+             new SentryCliPlugin({
+               include: './dist',
+               ignoreFile: '.sentrycliignore',
+               ignore: ['node_modules', 'webpack.config.js'],
+               configFile: '.sentryclirc',
+               urlPrefix: 'http:' + process.env.VUE_APP_CDN_URL, // 静态文件地址
+               release: process.env.VUE_APP_MODE + VERSION // release版本号
+             }),
+             new CleanWebpackPlugin({
+               protectWebpackAssets: false,
+               cleanAfterEveryBuildPatterns: ['**/js/*.map']
+             })
+           )
+         }
+        config.plugins = [
+           ...config.plugins,
+           ...plugins
+         ]
+     }
+     }
+   ```
+   
+    
+   
+   这种方式有个弊端是项目打包时如果sentry服务出现问题，就会导致打包失败，阻塞打包流程。
 
 ### sentry cli方式上传源文件
 
 1. sentry-cli 下载
 
-  ```
-npm install @sentry/cli
-  ```
+   ```javascript
+   npm install @sentry/cli
+   ```
 
 
 2. 命令上传
 
-在package.json里面npm script加上
-
-```
-    "sentry-cli": "VERSION=$(sentry-cli releases propose-version) && sentry-cli releases files $VERSION upload-sourcemaps --url-prefix '域名/项目名/js/' './dist/js'"
-
-```
-
-这里的version是取得最近的一次提交的commitId
+   在package.json里面npm script加上
+   
+   ```
+   "sentry-cli": "VERSION=$(sentry-cli releases propose-version) && sentry-cli releases files $VERSION upload-sourcemaps --url-prefix '域名/项目名/js/' './dist/js'"
+   
+   ```
+   
+   这里的version是取得最近的一次提交的commitId
 
 
 3. 异步执行，不阻塞打包流程
@@ -206,47 +206,49 @@ npm install @sentry/cli
    在package.json里面npm script加上
 
       ```
-      "postbuild:prod": "npm run sentry-cli; echo -n",
+   "postbuild:prod": "npm run sentry-cli; echo -n",
       ```
    
       npm脚本有pre和post两个钩子。用户执行npm run build的时候会按照下面的顺序执行，
 
       ```
-         npm run prebuild && npm run build && npm run postbuild
+   npm run prebuild && npm run build && npm run postbuild
       ```
 
    所以我们在post的钩子里面加入执行sentry-cli，并且echo -n  的作用是，异步,不阻塞后面的 命令,所以这里能保证打包时不阻塞打包流程
 
 
 
-4.保证release一样
+4. 保证release一样
 
-在vue.config.js文件里加入,这个是得到最近的一次commitId，和指令上传的version保持一致
+   在vue.config.js文件里加入,这个是得到最近的一次commitId，和指令上传的version保持一致
 
-  ```
-const gitSha = require('child_process').execSync('git rev-parse HEAD').toString().trim()
-  ```
-
-使用webpack的DefinePlugin插件，这个是在编译的时候创建一个全局变量
-
-```
-new webpack.DefinePlugin({
-  VERSION: JSON.stringify(gitSha)
-});
-```
-
-在项目配置sentry的时候,release的VERSION就和sentry-cli的VERSION对应一致了
-
-```
-  Sentry.init({
-    dsn: 'dsn',
-    integrations: [
-      new VueIntegration({ Vue, attachProps: true })
-    ],
-    environment: process.env.VUE_APP_MODE,
-    release: VERSION
-  })
-```
+   ```javascript
+   const gitSha = require('child_process').execSync('git rev-parse HEAD').toString().trim()
+   ```
+   
+   使用webpack的DefinePlugin插件，这个是在编译的时候创建一个全局变量
+   
+   ```
+   new webpack.DefinePlugin({
+     VERSION: JSON.stringify(gitSha)
+   });
+   ```
+   
+   在项目配置sentry的时候,release的VERSION就和sentry-cli的VERSION对应一致了
+   
+   ```javascript
+     Sentry.init({
+       dsn: 'dsn',
+       integrations: [
+         new VueIntegration({ Vue, attachProps: true })
+       ],
+       environment: process.env.VUE_APP_MODE,
+       release: VERSION
+     })
+   ```
+   
+   
 
 
 5. nginx配置,让map文件线上不能访问
