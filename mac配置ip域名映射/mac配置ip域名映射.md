@@ -24,3 +24,4 @@
  相关原理
 
 这是由于新版的webpack-dev-server出于安全考虑，默认检查hostname，如果hostname 不是配置内的，将中断访问
+

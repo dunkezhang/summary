@@ -1,0 +1,56 @@
+.list {
+  background: rgba(255,255,255,0.1);
+  font-size: 12px;
+  margin: 0 10px 15px;
+  border-radius: 5px;
+  padding: 15px 12px;
+  max-height: 120px;
+  overflow: hidden;
+  .item {
+    display: flex;
+    justify-content: space-between;
+    .leftSection {
+      display: flex;
+      .avatarImg, .avatarNull {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+      }
+      .avatarNull {
+        background-color: #f2f2f2;
+        font-size: 18px;
+        font-weight: bold;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: #999;
+      }
+      .userMsg {
+        margin-left: 4px;
+        text-align: left;
+        div:nth-child(1) {
+          margin-bottom: 4px;
+          font-weight: 400;
+        }
+        div:nth-child(2) {
+          font-size: 11px;
+          color: rgba(255,255,255,0.5);
+        }
+      }
+    }
+    .rightSection {
+      text-align: right;
+      div:nth-child(1) {
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      div:nth-child(2) {
+        font-size: 11px;
+        color: rgba(255,255,255,0.5);
+      }
+    }
+  }
+  .item:not(:last-child) {
+    margin-bottom: 15px;
+  }
+}
