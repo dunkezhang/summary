@@ -6,6 +6,10 @@
 //1. j<w(i),V(i,j)=V(i-1,j)
 //2. j>(wi),V(i,j)=Max{ V(i-1,j), v(i) + V(i-1,j-w(i))    }
 
+/** 
+ * weights [0,2,3,5]
+ * values  [0,2,4,7]
+*/
 function knapSack(capacity,weights,valus) {
   let V=[]
   for(let i=0;i<valus.length;i++) {
@@ -14,7 +18,7 @@ function knapSack(capacity,weights,valus) {
       if(i===0 || j===0){
         V[i][j] = 0
       }
-      if(j<weights[i]){
+      else if(j<weights[i]){
         V[i][j] = V[i-1][j]
       } else {
         V[i][j] = Math.max(V[i-1][j],V[i-1][j-weights[i]] + valus[i])
