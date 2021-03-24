@@ -2,7 +2,35 @@
 
    cat file1 查看file1的内容
 
-## 2. find：搜索文件
+## 2. vi: 编辑器
+
+编辑文件 vi 1.txt (按i进入编辑模式，先按esc,输入:wq保持退出，:qa!强制退出)
+
+vim ~/.bash_profile （上次添加跳板机的时候进入这个文件修改一些东西），然后就查了vim也是编辑某个文件，是vi的升级版本
+
+## 3. rm
+
+删除文件  rm test.text
+
+删除目录  rm -rf test
+
+## 4. touch
+
+新建文件 touch 1.text
+
+## 5. mkdir
+
+新建文件夹  mkdir test
+
+## 6.  tail 打印日志
+
+tail -f app.log |grep 邀请码 -A 5
+
+打印最近匹配邀请码行的后5行
+
+注意和上面的cat不一样，cat是把整个文件输出出来
+
+## 7. find：搜索文件
 
 常用参数：
 
@@ -12,31 +40,11 @@
 
 -size 按照文件大小查找
 
-## 3. vi: 编辑器
-
-编辑文件 vi 1.txt (按i进入编辑模式，先按esc,输入:wq保持退出，:qa!强制退出)
-
-## 4. rm
-
-删除文件  rm test.text
-
-删除目录  rm -rf test
-
-## 5. touch
-
-新建文件 touch 1.text
-
-## 6. mkdir
-
-新建文件夹  mkdir test
-
-## 7. 打印日志
-
-tail -f app.log |grep 邀请码 -A 5
-
-打印最近匹配邀请码行的后5行
-
 ## 8. curl 请求
+
+curl 是常用的命令行工具，用来请求 Web 服务器。它的名字就是客户端（client）的 URL 工具的意思。
+
+下面的测试是为了测试某个http请求整个过程中所花费的时间
 
 ```
 curl -w "
