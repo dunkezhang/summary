@@ -1,14 +1,21 @@
-### flex 缩写
-flex:1 ===> 1,1,0
-flex:auto ===> 1,1,auto
-flex:none ===> 0,0,auto
+## flex-basis属性
+
+`flex-basis`属性定义了在分配多余空间之前，项目占据的主轴空间。浏览器根据这个属性，计算主轴是否有多余空间。他的默认值为`auto`，即项目的本来大小。
 
 ## flex-basis: auto 和flex-basis: 0 区别
 flex-basis的属性值为auto时，在width有声明的情况下以width计算，没有声明的情况以content为标准
 flex-basis的属性值为0时，盒子宽度就为0，
 
 以上都是求得宽度后再去计算剩余宽度
+
+普及一个小知识: ` flex 缩写`
+
+flex:1 ===> 1,1,0
+flex:auto ===> 1,1,auto
+flex:none ===> 0,0,auto
+
 例如：
+
 ```
 <div style={{ width: '375px', display: 'flex' }}>
    <div style={{ flex: '1' }}>子元素</div>
