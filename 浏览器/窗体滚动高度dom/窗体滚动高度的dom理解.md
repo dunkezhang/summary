@@ -15,13 +15,13 @@
 
    在pc上访问时这样的：
 
-   ![2019-02-22_002936](/Users/zhangdunke/Documents/personal/summary/窗体滚动高度dom/img/2019-02-22_002936.png)
+   ![2019-02-22_002936](./img/2019-02-22_002936.png)
 
    
 
    而手机上则是：
 
-   ![20190222003318](/Users/zhangdunke/Documents/personal/summary/窗体滚动高度dom/img/20190222003318.png)
+   ![20190222003318](./img/20190222003318.png)
 
    - 桌面端浏览器`document.body.scrollTop`一直是0，说明桌面端滚动元素是`document.documentElement.scrollTop`
    - 移动端`document.docmentElement.scrollTop`一直是0，说明移动端滚动元素是`document.body.scrollTop`
