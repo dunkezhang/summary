@@ -6,7 +6,7 @@
    3. nowrap 文本不会换行，文本会在在同一行上继续，直到遇到 br 标签为止。
    4. pre-wrap 保留空白符序列，但是正常地进行换行。
    5. pre-line 合并空白符序列，但是保留换行符。
-   i6. nherit 规定应该从父元素继承 white-space 属性的值。
+      i6. nherit 规定应该从父元素继承 white-space 属性的值。
 
 ## 2. word-wrap
    word-wrap属性用来标明是否允许浏览器在单词内进行断句，可参考word-wrap,这是为了防止当一个字符串太长而找不到它的自然断句点时产生溢出现象。
@@ -18,7 +18,7 @@
    word-break 属性用来标明怎么样进行单词内的断句。可参考:word-break
 
    1. normal：使用浏览器默认的换行规则。
-   2. break-all:允许在单词内换行
+   2. break-all:允许在单词内换行（会把一个单词给断掉）
    3. keep-all:只能在半角空格或连字符处换行
 
 ## 4. Text-overflow
@@ -28,3 +28,37 @@
    1. clip这个关键字的意思是"在内容区域的极限处截断文本"，因此在字符的中间可能会发生截断。为了能在两个字符过渡处截断，你必须使用一个空字符串值 (’’)(To truncate at the transition between two characters, the empty string value (’’) must be used.)。此为默认值。
    2. ellipsis这个关键字的意思是“用一个省略号 (’…’, U+2026 HORIZONTAL ELLIPSIS)来表示被截断的文本”。这个省略号被添加在内容区域中，因此会减少显示的文本。如果空间太小到连省略号都容纳不下，那么这个省略号也会被截断。
    3. string用来表示被截断的文本。字符串内容将被添加在内容区域中，所以会减少显示出的文本。如果空间太小到连省略号都容纳不下，那么这个字符串也会被截断。
+
+## 常用的几个css换行样式
+
+### css强制不换行写法
+
+```
+word-break:keep-all;
+white-space:nowrap;
+overflow:hidden;
+text-overflow:ellipsis;
+```
+
+### css强制换行写法
+
+```
+word-break:break-all; // 这个单词会被截断
+word-wrap:break-word; // 这个会按照单词换行
+```
+
+#### 文字超出宽度后，显示省略号的解决办法
+
+```
+overflow:hidden;
+white-space:nowrap;
+text-overflow:ellipsis;
+```
+
+#### 需要注意的是，在移动端在flex元素中的内容进行省略文字的操作，则flex失效，flex之外的内容宽度不受控制，图片宽度无法撑起，解决办法如下：给设置了flex:1;弹性宽度的div设置最小宽度为0可以解决此问题。
+
+```
+flex:1;
+min-width:0;
+```
+
