@@ -8,6 +8,8 @@
 
 vim ~/.bash_profile （上次添加跳板机的时候进入这个文件修改一些东西），然后就查了vim也是编辑某个文件，是vi的升级版本
 
+open -t .bash_profile可以编辑bash_profile文件
+
 ## 3. rm
 
 删除文件  rm test.text
