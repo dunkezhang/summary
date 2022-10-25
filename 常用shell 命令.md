@@ -8,7 +8,7 @@
 
 vim ~/.bash_profile （上次添加跳板机的时候进入这个文件修改一些东西），然后就查了vim也是编辑某个文件，是vi的升级版本
 
-bash_profile文件修改后要运行一下让它生效source ~/.bash_profile
+bash_profile文件修改后要运行一下让它生效source ~/.bash_profile(在cf公司里面保存好后直接输入jump就可以进去了)
 
 open -t .bash_profile可以编辑bash_profile文件
 
