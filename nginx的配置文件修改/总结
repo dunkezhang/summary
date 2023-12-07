@@ -1,3 +1,24 @@
 1. nginx配置文件默认在 /usr/local/etc/nginx/nginx.conf
 2. nginx -t 
 nginx会去测试你得配置文件得语法，并告诉你配置文件是否写得正确，同时也告诉了你配置文件得路径
+
+安装nginx:
+https://juejin.cn/post/6986190222241464350
+
+Brew装好nginx后查看常用命令
+https://blog.csdn.net/sun124608666/article/details/123384122
+
+启动nginx
+brew services start nginx
+
+关闭nginx
+brew services stop nginx
+
+热更新nginx
+nginx -s reload
+
+使用homebrew安装nginx
+Brew install nginx
+
+查看nginx配置信息
+brew info nginx
