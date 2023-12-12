@@ -99,3 +99,9 @@ https://juejin.cn/post/6986190222241464350
 Brew装好nginx后查看常用命令
 
 https://blog.csdn.net/sun124608666/article/details/123384122
+
+
+
+安装alfred
+
+https://www.macappbox.com/a/alfred.html
