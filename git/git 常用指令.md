@@ -42,6 +42,14 @@ git cherry-pick <commit id>
 
 参考：https://www.jianshu.com/p/08c3f1804b36
 
+
+
+7.git commit时取消检测
+
+```
+git commit --no-verify
+```
+
 ## tag
 
 1. 推送所有本地tag到远程

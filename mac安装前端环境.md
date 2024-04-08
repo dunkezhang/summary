@@ -105,3 +105,9 @@ https://blog.csdn.net/sun124608666/article/details/123384122
 安装alfred
 
 https://www.macappbox.com/a/alfred.html
+
+
+
+vsCode 配置保存格式化
+
+https://blog.csdn.net/i_am_a_div/article/details/114842638

@@ -32,3 +32,6 @@ Text.render = function (props: TextProps, ref: React.RefObject<Text>) {
 }
 ```
 
+RN 踩坑
+
+https://cloud.tencent.com/developer/article/1883782
