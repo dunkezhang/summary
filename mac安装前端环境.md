@@ -111,3 +111,8 @@ https://www.macappbox.com/a/alfred.html
 vsCode 配置保存格式化
 
 https://blog.csdn.net/i_am_a_div/article/details/114842638
+
+下载软件网站
+https://appstorrent.ru/programs/
+
+

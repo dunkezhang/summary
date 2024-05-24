@@ -18,15 +18,21 @@
       ![image-20210125112732614](./img/image-20210125112732614.png)
       
    5. 测试速度`nrm test npm`
-   
-3. npm**版本管理器nvm**
+
+3. npm**版本管理器nvm**（管理node）
 
    1.列出已安装实例`nvm ls`
-   
+
    2.切换到 4.2.2`nvm use 4.2.2`
-   
+
+   3.全局node修改 `nvm alias default 16`
+
 4. npm钩子
 
    用户执行`npm run build`的时候，会自动按照下面的顺序执行。
 
    `npm run prebuild && npm run build && npm run postbuild`
+
+5. Npm 清除缓存
+
+   npm cache verify
