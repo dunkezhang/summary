@@ -36,3 +36,8 @@
 5. Npm 清除缓存
 
    npm cache verify
+
+6. 删除原有的包文件
+
+   1. rm -rf node_modules
+   2. npm cache clean --force   //清除npm缓存

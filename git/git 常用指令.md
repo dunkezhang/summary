@@ -13,13 +13,19 @@ git branch -m oldName newName
 3. 添加远端仓库信息
 
 ```
- git remote add name <url>          //添加一个远程仓库，命名为 name ，其对应资源地址由 url 指定
+ git remote add <name> <url>          //添加一个远程仓库，命名为 name ，其对应资源地址由 url 指定
 ```
 
 4. 修改本地remote源
 
 ```
 git remote set-url origin <url>
+```
+
+5. 删除本地remote源
+
+```
+git remote remove <name>
 ```
 
 5. git rebase 用法
