@@ -181,3 +181,7 @@ android {    lintOptions {        disable "Instantiatable"    } }
 
 
 https://github.com/facebook/react-native/pull/30177
+
+
+
+不能打包出bundle解决办法：npx react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle && cd android && ./gradlew clean && ENVFILE=.env.test ./gradlew assembleRelease
